@@ -1,0 +1,491 @@
+{
+	"info": {
+		"_postman_id": "play-demo-api-collection",
+		"name": "Play Framework Demo API",
+		"description": "Play Framework Demo 项目的 API 测试集合，包含用户、产品、订单等接口的完整测试用例。",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:9000",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "基础接口",
+			"description": "首页、健康检查、应用信息等基础接口",
+			"item": [
+				{
+					"name": "首页",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/",
+							"host": ["{{baseUrl}}"],
+							"path": [""]
+						},
+						"description": "获取 API 首页信息，包含所有可用端点列表"
+					},
+					"response": []
+				},
+				{
+					"name": "健康检查",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/health",
+							"host": ["{{baseUrl}}"],
+							"path": ["health"]
+						},
+						"description": "检查应用健康状态"
+					},
+					"response": []
+				},
+				{
+					"name": "应用信息",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/info",
+							"host": ["{{baseUrl}}"],
+							"path": ["info"]
+						},
+						"description": "获取应用运行时信息"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "用户接口 (User API)",
+			"description": "用户相关的 CRUD 接口",
+			"item": [
+				{
+					"name": "获取用户列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/users?page=1&size=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "users"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "页码（默认1）"
+								},
+								{
+									"key": "size",
+									"value": "10",
+									"description": "每页数量（默认10）"
+								}
+							]
+						},
+						"description": "获取用户列表，支持分页"
+					},
+					"response": []
+				},
+				{
+					"name": "根据ID获取用户",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/users/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "users", "1"]
+						},
+						"description": "根据用户ID获取用户详情"
+					},
+					"response": []
+				},
+				{
+					"name": "搜索用户",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/users/search?name=张",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "users", "search"],
+							"query": [
+								{
+									"key": "name",
+									"value": "张",
+									"description": "搜索关键词"
+								}
+							]
+						},
+						"description": "根据用户名搜索用户"
+					},
+					"response": []
+				},
+				{
+					"name": "创建用户",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"测试用户\",\n    \"email\": \"test@example.com\",\n    \"phone\": \"13800138000\",\n    \"age\": 28,\n    \"gender\": \"男\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "users"]
+						},
+						"description": "创建新用户"
+					},
+					"response": []
+				},
+				{
+					"name": "更新用户",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"更新后的用户名\",\n    \"email\": \"updated@example.com\",\n    \"age\": 30\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "users", "1"]
+						},
+						"description": "更新用户信息"
+					},
+					"response": []
+				},
+				{
+					"name": "删除用户",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/users/5",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "users", "5"]
+						},
+						"description": "删除用户"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "产品接口 (Product API)",
+			"description": "产品相关的 CRUD 接口",
+			"item": [
+				{
+					"name": "获取产品列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "products"]
+						},
+						"description": "获取所有产品列表"
+					},
+					"response": []
+				},
+				{
+					"name": "根据ID获取产品",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "products", "1"]
+						},
+						"description": "根据产品ID获取产品详情"
+					},
+					"response": []
+				},
+				{
+					"name": "根据类别获取产品",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/category/手机",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "products", "category", "手机"]
+						},
+						"description": "根据产品类别筛选产品"
+					},
+					"response": []
+				},
+				{
+					"name": "创建产品",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"测试产品\",\n    \"description\": \"这是一个测试产品\",\n    \"price\": 999.99,\n    \"category\": \"测试\",\n    \"stock\": 50\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/products",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "products"]
+						},
+						"description": "创建新产品"
+					},
+					"response": []
+				},
+				{
+					"name": "批量创建产品",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"name\": \"批量产品1\",\n        \"description\": \"批量创建的第一个产品\",\n        \"price\": 199.99,\n        \"category\": \"批量测试\",\n        \"stock\": 100\n    },\n    {\n        \"name\": \"批量产品2\",\n        \"description\": \"批量创建的第二个产品\",\n        \"price\": 299.99,\n        \"category\": \"批量测试\",\n        \"stock\": 80\n    },\n    {\n        \"name\": \"批量产品3\",\n        \"description\": \"批量创建的第三个产品\",\n        \"price\": 399.99,\n        \"category\": \"批量测试\",\n        \"stock\": 60\n    }\n]"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/products/batch",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "products", "batch"]
+						},
+						"description": "批量创建多个产品"
+					},
+					"response": []
+				},
+				{
+					"name": "更新产品",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"更新后的产品名\",\n    \"price\": 1299.99,\n    \"stock\": 200\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/products/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "products", "1"]
+						},
+						"description": "更新产品信息"
+					},
+					"response": []
+				},
+				{
+					"name": "删除产品",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/7",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "products", "7"]
+						},
+						"description": "删除产品"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "订单接口 (Order API)",
+			"description": "订单相关的接口，包含复杂对象和状态管理",
+			"item": [
+				{
+					"name": "获取订单列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/orders",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "orders"]
+						},
+						"description": "获取所有订单列表"
+					},
+					"response": []
+				},
+				{
+					"name": "按状态筛选订单",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/orders?status=PENDING",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "orders"],
+							"query": [
+								{
+									"key": "status",
+									"value": "PENDING",
+									"description": "订单状态: PENDING, PAID, SHIPPED, COMPLETED, CANCELLED"
+								}
+							]
+						},
+						"description": "根据状态筛选订单"
+					},
+					"response": []
+				},
+				{
+					"name": "根据ID获取订单",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/orders/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "orders", "1"]
+						},
+						"description": "根据订单ID获取订单详情"
+					},
+					"response": []
+				},
+				{
+					"name": "创建订单",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 1,\n    \"shippingAddress\": \"北京市朝阳区测试街道123号\",\n    \"remark\": \"请尽快发货\",\n    \"items\": [\n        {\n            \"productId\": 1,\n            \"productName\": \"iPhone 15 Pro\",\n            \"price\": 8999.00,\n            \"quantity\": 1\n        },\n        {\n            \"productId\": 3,\n            \"productName\": \"AirPods Pro 2\",\n            \"price\": 1899.00,\n            \"quantity\": 2\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/orders",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "orders"]
+						},
+						"description": "创建新订单（包含订单项）"
+					},
+					"response": []
+				},
+				{
+					"name": "更新订单状态 (PATCH)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"PAID\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/orders/4/status",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "orders", "4", "status"]
+						},
+						"description": "更新订单状态（支持: PENDING -> PAID -> SHIPPED -> COMPLETED，任意状态可转为 CANCELLED）"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "错误处理测试",
+			"description": "测试各种错误情况的响应",
+			"item": [
+				{
+					"name": "404 - 资源不存在",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/users/99999",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "users", "99999"]
+						},
+						"description": "测试访问不存在的资源"
+					},
+					"response": []
+				},
+				{
+					"name": "400 - 参数错误（创建用户缺少必填字段）",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "users"]
+						},
+						"description": "测试缺少必填字段时的错误响应"
+					},
+					"response": []
+				},
+				{
+					"name": "400 - 无效状态转换",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"COMPLETED\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/orders/4/status",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "orders", "4", "status"]
+						},
+						"description": "测试非法的订单状态转换"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
+
