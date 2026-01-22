@@ -29,8 +29,6 @@
 ### 服务地址
 
 - **开发环境**: `http://localhost:9000`
-- **测试环境**: `http://test-server:9000`
-- **生产环境**: `http://api.example.com`
 
 ### 协议
 

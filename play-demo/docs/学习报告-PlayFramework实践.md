@@ -3,7 +3,7 @@
 ## 📋 报告信息
 
 - **项目名称**: 用户权限管理系统 RESTful API
-- **技术栈**: Play Framework 2.9.x、Java 17、Hibernate JPA
+- **技术栈**: Play Framework 2.9.x、Java 8、Hibernate JPA
 - **报告日期**: 2026-01-22
 - **实践项目**: play-demo
 
