@@ -13,15 +13,21 @@ lazy val root = (project in file(".")).enablePlugins(PlayJava)
 scalaVersion := "2.13.12"
 
 // 依赖库
-// 注意：Play Framework 已内置 Jackson，无需手动添加
 libraryDependencies ++= Seq(
-  guice,                                    // 依赖注入
-  javaJdbc,                                 // JDBC 支持
-  "com.h2database" % "h2" % "2.2.224",      // H2 内存数据库
+  guice,                                                // 依赖注入
+  javaJdbc,                                             // JDBC 支持
+  javaJpa,                                              // JPA 支持
+  "com.h2database" % "h2" % "2.2.224",                  // H2 内存数据库
+  "mysql" % "mysql-connector-java" % "8.0.33",          // MySQL 驱动
+  "org.hibernate" % "hibernate-core" % "6.2.7.Final",   // Hibernate ORM
+  "org.hibernate" % "hibernate-validator" % "8.0.1.Final", // Bean Validation
+  "org.glassfish.expressly" % "expressly" % "5.0.0",    // Expression Language
+  "org.mindrot" % "jbcrypt" % "0.4",                    // 密码加密
   
   // 测试依赖
   "org.assertj" % "assertj-core" % "3.24.2" % Test,
-  "org.awaitility" % "awaitility" % "4.2.0" % Test
+  "org.awaitility" % "awaitility" % "4.2.0" % Test,
+  "com.h2database" % "h2" % "2.2.224" % Test
 )
 
 // Java 编译选项

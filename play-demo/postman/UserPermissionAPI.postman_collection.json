@@ -1,0 +1,356 @@
+{
+  "info": {
+    "name": "Play Framework - 用户权限管理API",
+    "description": "用户权限管理系统完整API测试用例集合 (Play Framework)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:9000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "用户管理",
+      "item": [
+        {
+          "name": "创建用户",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {
+              "raw": "{{baseUrl}}/api/management/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "users"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"password123\",\n  \"email\": \"test@example.com\",\n  \"phone\": \"13800138000\",\n  \"realName\": \"测试用户\"\n}"
+            }
+          }
+        },
+        {
+          "name": "获取用户详情",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/users/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "users", "1"]
+            }
+          }
+        },
+        {
+          "name": "根据用户名获取用户",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/users/username/testuser",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "users", "username", "testuser"]
+            }
+          }
+        },
+        {
+          "name": "获取用户列表",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/users?page=0&size=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "users"],
+              "query": [{"key": "page", "value": "0"}, {"key": "size", "value": "10"}]
+            }
+          }
+        },
+        {
+          "name": "搜索用户",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/users/search?keyword=test&page=0&size=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "users", "search"],
+              "query": [{"key": "keyword", "value": "test"}, {"key": "page", "value": "0"}, {"key": "size", "value": "10"}]
+            }
+          }
+        },
+        {
+          "name": "根据状态查询用户",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/users/by-status?enabled=true&page=0&size=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "users", "by-status"],
+              "query": [{"key": "enabled", "value": "true"}, {"key": "page", "value": "0"}, {"key": "size", "value": "10"}]
+            }
+          }
+        },
+        {
+          "name": "更新用户",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {
+              "raw": "{{baseUrl}}/api/management/users/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "users", "1"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"newemail@example.com\",\n  \"realName\": \"新名字\"\n}"
+            }
+          }
+        },
+        {
+          "name": "删除用户",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/users/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "users", "1"]
+            }
+          }
+        },
+        {
+          "name": "批量删除用户",
+          "request": {
+            "method": "DELETE",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {
+              "raw": "{{baseUrl}}/api/management/users/batch",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "users", "batch"]
+            },
+            "body": {"mode": "raw", "raw": "[1, 2, 3]"}
+          }
+        }
+      ]
+    },
+    {
+      "name": "角色管理",
+      "item": [
+        {
+          "name": "创建角色",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {
+              "raw": "{{baseUrl}}/api/management/roles",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "roles"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"管理员\",\n  \"code\": \"ADMIN\",\n  \"description\": \"系统管理员角色\"\n}"
+            }
+          }
+        },
+        {
+          "name": "获取角色详情",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/roles/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "roles", "1"]
+            }
+          }
+        },
+        {
+          "name": "根据编码获取角色",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/roles/code/ADMIN",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "roles", "code", "ADMIN"]
+            }
+          }
+        },
+        {
+          "name": "获取角色列表",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/roles?page=0&size=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "roles"],
+              "query": [{"key": "page", "value": "0"}, {"key": "size", "value": "10"}]
+            }
+          }
+        },
+        {
+          "name": "搜索角色",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/roles/search?keyword=admin&page=0&size=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "roles", "search"],
+              "query": [{"key": "keyword", "value": "admin"}, {"key": "page", "value": "0"}, {"key": "size", "value": "10"}]
+            }
+          }
+        },
+        {
+          "name": "更新角色",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {
+              "raw": "{{baseUrl}}/api/management/roles/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "roles", "1"]
+            },
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"高级管理员\",\n  \"description\": \"高级系统管理员\"\n}"}
+          }
+        },
+        {
+          "name": "删除角色",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/roles/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "roles", "1"]
+            }
+          }
+        },
+        {
+          "name": "批量删除角色",
+          "request": {
+            "method": "DELETE",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {
+              "raw": "{{baseUrl}}/api/management/roles/batch",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "roles", "batch"]
+            },
+            "body": {"mode": "raw", "raw": "[1, 2, 3]"}
+          }
+        }
+      ]
+    },
+    {
+      "name": "权限管理",
+      "item": [
+        {
+          "name": "创建权限",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {
+              "raw": "{{baseUrl}}/api/management/permissions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "permissions"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"用户查看\",\n  \"code\": \"USER:READ\",\n  \"description\": \"查看用户信息的权限\",\n  \"resource\": \"user\",\n  \"action\": \"READ\"\n}"
+            }
+          }
+        },
+        {
+          "name": "获取权限详情",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/permissions/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "permissions", "1"]
+            }
+          }
+        },
+        {
+          "name": "根据编码获取权限",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/permissions/code/USER:READ",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "permissions", "code", "USER:READ"]
+            }
+          }
+        },
+        {
+          "name": "获取权限列表",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/permissions?page=0&size=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "permissions"],
+              "query": [{"key": "page", "value": "0"}, {"key": "size", "value": "10"}]
+            }
+          }
+        },
+        {
+          "name": "搜索权限",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/permissions/search?keyword=user&page=0&size=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "permissions", "search"],
+              "query": [{"key": "keyword", "value": "user"}, {"key": "page", "value": "0"}, {"key": "size", "value": "10"}]
+            }
+          }
+        },
+        {
+          "name": "根据资源查询权限",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/permissions/by-resource?resource=user&page=0&size=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "permissions", "by-resource"],
+              "query": [{"key": "resource", "value": "user"}, {"key": "page", "value": "0"}, {"key": "size", "value": "10"}]
+            }
+          }
+        },
+        {
+          "name": "更新权限",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {
+              "raw": "{{baseUrl}}/api/management/permissions/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "permissions", "1"]
+            },
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"用户完全访问\",\n  \"action\": \"ALL\"\n}"}
+          }
+        },
+        {
+          "name": "删除权限",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/management/permissions/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "permissions", "1"]
+            }
+          }
+        },
+        {
+          "name": "批量删除权限",
+          "request": {
+            "method": "DELETE",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {
+              "raw": "{{baseUrl}}/api/management/permissions/batch",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "management", "permissions", "batch"]
+            },
+            "body": {"mode": "raw", "raw": "[1, 2, 3]"}
+          }
+        }
+      ]
+    }
+  ]
+}
