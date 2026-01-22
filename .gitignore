@@ -40,3 +40,4 @@ build/
 
 ### H2 Database ###
 *.db
+play-demo/cs
