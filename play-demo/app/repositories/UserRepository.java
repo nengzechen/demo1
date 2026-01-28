@@ -5,8 +5,8 @@ import play.db.jpa.JPAApi;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +24,7 @@ public class UserRepository {
     }
 
     private EntityManager em() {
-        return jpaApi.em();
+        return jpaApi.em("defaultPersistenceUnit");
     }
 
     public User save(User user) {

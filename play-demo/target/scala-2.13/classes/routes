@@ -10,68 +10,131 @@ GET     /                           controllers.HomeController.index()
 GET     /health                     controllers.HomeController.health()
 GET     /info                       controllers.HomeController.appInfo()
 
+# ===================================================
+# 用户权限管理API (User Permission Management)
+# ===================================================
+
 # ----------------------
-# 用户相关接口 (User API)
+# 用户管理接口 (User Management API)
 # ----------------------
-# 获取用户列表（支持分页）
-GET     /api/users                  controllers.UserController.list(page: Int ?= 1, size: Int ?= 10)
-
-# 根据 ID 获取用户
-GET     /api/users/:id              controllers.UserController.getById(id: Long)
-
-# 根据用户名搜索
-GET     /api/users/search           controllers.UserController.searchByName(name: String)
-
 # 创建用户
-POST    /api/users                  controllers.UserController.create(request: Request)
+POST    /api/management/users                       controllers.UserManagementController.createUser(request: Request)
+
+# 获取用户详情
+GET     /api/management/users/:id                   controllers.UserManagementController.getUserById(id: Long)
+
+# 根据用户名获取用户
+GET     /api/management/users/username/:username    controllers.UserManagementController.getUserByUsername(username: String)
+
+# 获取用户列表（分页）
+GET     /api/management/users                       controllers.UserManagementController.getAllUsers(page: Int ?= 0, size: Int ?= 10)
+
+# 搜索用户
+GET     /api/management/users/search                controllers.UserManagementController.searchUsers(keyword: String, page: Int ?= 0, size: Int ?= 10)
+
+# 根据状态查询用户
+GET     /api/management/users/by-status             controllers.UserManagementController.getUsersByStatus(enabled: Boolean, page: Int ?= 0, size: Int ?= 10)
 
 # 更新用户
-PUT     /api/users/:id              controllers.UserController.update(request: Request, id: Long)
+PUT     /api/management/users/:id                   controllers.UserManagementController.updateUser(request: Request, id: Long)
 
 # 删除用户
+DELETE  /api/management/users/:id                   controllers.UserManagementController.deleteUser(id: Long)
+
+# 批量删除用户
+DELETE  /api/management/users/batch                 controllers.UserManagementController.deleteUsers(request: Request)
+
+# ----------------------
+# 角色管理接口 (Role Management API)
+# ----------------------
+# 创建角色
+POST    /api/management/roles                       controllers.RoleManagementController.createRole(request: Request)
+
+# 获取角色详情
+GET     /api/management/roles/:id                   controllers.RoleManagementController.getRoleById(id: Long)
+
+# 根据编码获取角色
+GET     /api/management/roles/code/:code            controllers.RoleManagementController.getRoleByCode(code: String)
+
+# 获取角色列表（分页）
+GET     /api/management/roles                       controllers.RoleManagementController.getAllRoles(page: Int ?= 0, size: Int ?= 10)
+
+# 搜索角色
+GET     /api/management/roles/search                controllers.RoleManagementController.searchRoles(keyword: String, page: Int ?= 0, size: Int ?= 10)
+
+# 更新角色
+PUT     /api/management/roles/:id                   controllers.RoleManagementController.updateRole(request: Request, id: Long)
+
+# 删除角色
+DELETE  /api/management/roles/:id                   controllers.RoleManagementController.deleteRole(id: Long)
+
+# 批量删除角色
+DELETE  /api/management/roles/batch                 controllers.RoleManagementController.deleteRoles(request: Request)
+
+# ----------------------
+# 权限管理接口 (Permission Management API)
+# ----------------------
+# 创建权限
+POST    /api/management/permissions                         controllers.PermissionManagementController.createPermission(request: Request)
+
+# 获取权限详情
+GET     /api/management/permissions/:id                     controllers.PermissionManagementController.getPermissionById(id: Long)
+
+# 根据编码获取权限
+GET     /api/management/permissions/code/:code              controllers.PermissionManagementController.getPermissionByCode(code: String)
+
+# 获取权限列表（分页）
+GET     /api/management/permissions                         controllers.PermissionManagementController.getAllPermissions(page: Int ?= 0, size: Int ?= 10)
+
+# 搜索权限
+GET     /api/management/permissions/search                  controllers.PermissionManagementController.searchPermissions(keyword: String, page: Int ?= 0, size: Int ?= 10)
+
+# 根据资源查询权限
+GET     /api/management/permissions/by-resource             controllers.PermissionManagementController.getPermissionsByResource(resource: String, page: Int ?= 0, size: Int ?= 10)
+
+# 更新权限
+PUT     /api/management/permissions/:id                     controllers.PermissionManagementController.updatePermission(request: Request, id: Long)
+
+# 删除权限
+DELETE  /api/management/permissions/:id                     controllers.PermissionManagementController.deletePermission(id: Long)
+
+# 批量删除权限
+DELETE  /api/management/permissions/batch                   controllers.PermissionManagementController.deletePermissions(request: Request)
+
+# ===================================================
+# 原有演示API (保留用于参考)
+# ===================================================
+
+# ----------------------
+# 用户相关接口 (User API - Legacy)
+# ----------------------
+GET     /api/users                  controllers.UserController.list(page: Int ?= 1, size: Int ?= 10)
+GET     /api/users/:id              controllers.UserController.getById(id: Long)
+GET     /api/users/search           controllers.UserController.searchByName(name: String)
+POST    /api/users                  controllers.UserController.create(request: Request)
+PUT     /api/users/:id              controllers.UserController.update(request: Request, id: Long)
 DELETE  /api/users/:id              controllers.UserController.delete(id: Long)
 
 # ----------------------
 # 产品相关接口 (Product API)
 # ----------------------
-# 获取产品列表
 GET     /api/products               controllers.ProductController.list()
-
-# 根据 ID 获取产品
 GET     /api/products/:id           controllers.ProductController.getById(id: Long)
-
-# 根据类别筛选产品
 GET     /api/products/category/:category    controllers.ProductController.getByCategory(category: String)
-
-# 创建产品
 POST    /api/products               controllers.ProductController.create(request: Request)
-
-# 批量创建产品
 POST    /api/products/batch         controllers.ProductController.batchCreate(request: Request)
-
-# 更新产品
 PUT     /api/products/:id           controllers.ProductController.update(request: Request, id: Long)
-
-# 删除产品
 DELETE  /api/products/:id           controllers.ProductController.delete(id: Long)
 
 # ----------------------
 # 订单相关接口 (Order API)
 # ----------------------
-# 获取订单列表
 GET     /api/orders                 controllers.OrderController.list(status: java.util.Optional[String])
-
-# 根据 ID 获取订单详情
 GET     /api/orders/:id             controllers.OrderController.getById(id: Long)
-
-# 创建订单
 POST    /api/orders                 controllers.OrderController.create(request: Request)
-
-# 更新订单状态
 PATCH   /api/orders/:id/status      controllers.OrderController.updateStatus(request: Request, id: Long)
 
 # ----------------------
 # 静态资源
 # ----------------------
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
-

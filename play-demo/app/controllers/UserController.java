@@ -42,7 +42,11 @@ public class UserController extends Controller {
     
     private User createUser(String username, String email, String phone, Integer age, String gender) {
         Long id = idGenerator.getAndIncrement();
-        User user = new User(id, username, email, phone, age, gender);
+        User user = new User(username, "password123", email);
+        user.setId(id);
+        user.setPhone(phone);
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
         userStore.put(id, user);
         return user;
     }
@@ -149,7 +153,7 @@ public class UserController extends Controller {
         user.setId(id);
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
-        user.setActive(true);
+        user.setEnabled(true);
         
         // 保存
         userStore.put(id, user);
@@ -185,14 +189,11 @@ public class UserController extends Controller {
         if (json.has("phone") && !json.get("phone").isNull()) {
             existingUser.setPhone(json.get("phone").asText());
         }
-        if (json.has("age") && !json.get("age").isNull()) {
-            existingUser.setAge(json.get("age").asInt());
+        if (json.has("realName") && !json.get("realName").isNull()) {
+            existingUser.setRealName(json.get("realName").asText());
         }
-        if (json.has("gender") && !json.get("gender").isNull()) {
-            existingUser.setGender(json.get("gender").asText());
-        }
-        if (json.has("active") && !json.get("active").isNull()) {
-            existingUser.setActive(json.get("active").asBoolean());
+        if (json.has("enabled") && !json.get("enabled").isNull()) {
+            existingUser.setEnabled(json.get("enabled").asBoolean());
         }
         
         existingUser.setUpdatedAt(LocalDateTime.now());

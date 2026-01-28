@@ -5,7 +5,7 @@ import play.db.jpa.JPAApi;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import jakarta.persistence.EntityManager;
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +23,7 @@ public class PermissionRepository {
     }
 
     private EntityManager em() {
-        return jpaApi.em();
+        return jpaApi.em("defaultPersistenceUnit");
     }
 
     public Permission save(Permission permission) {

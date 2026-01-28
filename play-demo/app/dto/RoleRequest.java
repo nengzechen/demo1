@@ -1,6 +1,6 @@
 package dto;
 
-import jakarta.validation.constraints.*;
+import javax.validation.constraints.*;
 import java.util.Set;
 
 /**

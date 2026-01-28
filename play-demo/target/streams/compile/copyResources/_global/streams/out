@@ -1,4 +1,5 @@
-[0m[[0m[0mdebug[0m] [0m[0mCopy resource mappings: [0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/conf/logback.xml,/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/target/scala-2.13/classes/logback.xml)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/conf/application.conf,/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/target/scala-2.13/classes/application.conf)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/conf/routes,/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/target/scala-2.13/classes/routes)[0m
+[debug] Copy resource mappings: 
+[debug] 	(/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/conf/logback.xml,/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/target/scala-2.13/classes/logback.xml)
+[debug] 	(/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/conf/application.conf,/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/target/scala-2.13/classes/application.conf)
+[debug] 	(/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/conf/routes,/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/target/scala-2.13/classes/routes)
+[debug] 	(/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/conf/META-INF/persistence.xml,/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/target/scala-2.13/classes/META-INF/persistence.xml)

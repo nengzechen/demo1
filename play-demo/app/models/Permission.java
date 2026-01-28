@@ -1,8 +1,8 @@
 package models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.util.HashSet;
 import java.util.Set;

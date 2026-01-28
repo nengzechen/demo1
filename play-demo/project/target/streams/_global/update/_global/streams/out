@@ -1,3 +1,8 @@
 [debug] not up to date. inChanged = true, force = false
 [debug] Updating ProjectRef(uri("file:/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/project/"), "play-demo-build")...
 [debug] Done updating ProjectRef(uri("file:/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/project/"), "play-demo-build")
+[warn] found version conflict(s) in library dependencies; some are suspected to be binary incompatible:
+[warn] 	* org.scala-lang.modules:scala-xml_2.12:2.1.0 (early-semver) is selected over {1.2.0, 1.1.1}
+[warn] 	    +- org.scala-lang:scala-compiler:2.12.18              (depends on 2.1.0)
+[warn] 	    +- com.typesafe.sbt:sbt-native-packager:1.5.2 (scalaVersion=2.12, sbtVersion=1.0) (depends on 1.1.1)
+[warn] 	    +- com.typesafe.play:twirl-api_2.12:1.5.1             (depends on 1.2.0)

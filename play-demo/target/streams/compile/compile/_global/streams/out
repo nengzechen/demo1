@@ -1,5 +1,12 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/conf/routes:62:1: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Option[String][0m
-[0m[[0m[31merror[0m] [0m[0m required: java.util.Optional[String][0m
-[0m[[0m[31merror[0m] [0m[0mGET     /api/orders                 controllers.OrderController.list(status: Option[String])[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[warn] /Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/app/controllers/PermissionManagementController.java:116:1: 未经检查的转换
+[warn]   需要: java.util.Set<java.lang.Long>
+[warn]   找到:    java.util.Set
+[warn] Json.fromJson(json, Set.class)
+[warn] /Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/app/controllers/RoleManagementController.java:109:1: 未经检查的转换
+[warn]   需要: java.util.Set<java.lang.Long>
+[warn]   找到:    java.util.Set
+[warn] Json.fromJson(json, Set.class)
+[warn] /Users/chennengze/Documents/projects/xgd/week1/demo1/play-demo/app/controllers/UserManagementController.java:118:1: 未经检查的转换
+[warn]   需要: java.util.Set<java.lang.Long>
+[warn]   找到:    java.util.Set
+[warn] Json.fromJson(json, Set.class)
