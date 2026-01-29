@@ -1,5 +1,5 @@
 # ===========================================
-# Play Framework 路由配置文件
+# Play Framework 路由配置文件 (Actor & WebSocket Only)
 # Routes
 # ===========================================
 
@@ -11,128 +11,58 @@ GET     /health                     controllers.HomeController.health()
 GET     /info                       controllers.HomeController.appInfo()
 
 # ===================================================
-# 用户权限管理API (User Permission Management)
+# Actor系统API (Actor System API)
 # ===================================================
 
 # ----------------------
-# 用户管理接口 (User Management API)
+# Actor任务处理接口 (Actor Task Processing API)
 # ----------------------
-# 创建用户
-POST    /api/management/users                       controllers.UserManagementController.createUser(request: Request)
+# 提交异步任务
+POST    /api/actor/task             controllers.ActorController.submitTask(request: Request)
 
-# 获取用户详情
-GET     /api/management/users/:id                   controllers.UserManagementController.getUserById(id: Long)
+# 查询任务状态
+GET     /api/actor/task/:taskId     controllers.ActorController.getTaskStatus(taskId: String)
 
-# 根据用户名获取用户
-GET     /api/management/users/username/:username    controllers.UserManagementController.getUserByUsername(username: String)
-
-# 获取用户列表（分页）
-GET     /api/management/users                       controllers.UserManagementController.getAllUsers(page: Int ?= 0, size: Int ?= 10)
-
-# 搜索用户
-GET     /api/management/users/search                controllers.UserManagementController.searchUsers(keyword: String, page: Int ?= 0, size: Int ?= 10)
-
-# 根据状态查询用户
-GET     /api/management/users/by-status             controllers.UserManagementController.getUsersByStatus(enabled: Boolean, page: Int ?= 0, size: Int ?= 10)
-
-# 更新用户
-PUT     /api/management/users/:id                   controllers.UserManagementController.updateUser(request: Request, id: Long)
-
-# 删除用户
-DELETE  /api/management/users/:id                   controllers.UserManagementController.deleteUser(id: Long)
-
-# 批量删除用户
-DELETE  /api/management/users/batch                 controllers.UserManagementController.deleteUsers(request: Request)
-
-# ----------------------
-# 角色管理接口 (Role Management API)
-# ----------------------
-# 创建角色
-POST    /api/management/roles                       controllers.RoleManagementController.createRole(request: Request)
-
-# 获取角色详情
-GET     /api/management/roles/:id                   controllers.RoleManagementController.getRoleById(id: Long)
-
-# 根据编码获取角色
-GET     /api/management/roles/code/:code            controllers.RoleManagementController.getRoleByCode(code: String)
-
-# 获取角色列表（分页）
-GET     /api/management/roles                       controllers.RoleManagementController.getAllRoles(page: Int ?= 0, size: Int ?= 10)
-
-# 搜索角色
-GET     /api/management/roles/search                controllers.RoleManagementController.searchRoles(keyword: String, page: Int ?= 0, size: Int ?= 10)
-
-# 更新角色
-PUT     /api/management/roles/:id                   controllers.RoleManagementController.updateRole(request: Request, id: Long)
-
-# 删除角色
-DELETE  /api/management/roles/:id                   controllers.RoleManagementController.deleteRole(id: Long)
-
-# 批量删除角色
-DELETE  /api/management/roles/batch                 controllers.RoleManagementController.deleteRoles(request: Request)
-
-# ----------------------
-# 权限管理接口 (Permission Management API)
-# ----------------------
-# 创建权限
-POST    /api/management/permissions                         controllers.PermissionManagementController.createPermission(request: Request)
-
-# 获取权限详情
-GET     /api/management/permissions/:id                     controllers.PermissionManagementController.getPermissionById(id: Long)
-
-# 根据编码获取权限
-GET     /api/management/permissions/code/:code              controllers.PermissionManagementController.getPermissionByCode(code: String)
-
-# 获取权限列表（分页）
-GET     /api/management/permissions                         controllers.PermissionManagementController.getAllPermissions(page: Int ?= 0, size: Int ?= 10)
-
-# 搜索权限
-GET     /api/management/permissions/search                  controllers.PermissionManagementController.searchPermissions(keyword: String, page: Int ?= 0, size: Int ?= 10)
-
-# 根据资源查询权限
-GET     /api/management/permissions/by-resource             controllers.PermissionManagementController.getPermissionsByResource(resource: String, page: Int ?= 0, size: Int ?= 10)
-
-# 更新权限
-PUT     /api/management/permissions/:id                     controllers.PermissionManagementController.updatePermission(request: Request, id: Long)
-
-# 删除权限
-DELETE  /api/management/permissions/:id                     controllers.PermissionManagementController.deletePermission(id: Long)
-
-# 批量删除权限
-DELETE  /api/management/permissions/batch                   controllers.PermissionManagementController.deletePermissions(request: Request)
+# 获取Actor系统信息
+GET     /api/actor/info             controllers.ActorController.getActorInfo()
 
 # ===================================================
-# 原有演示API (保留用于参考)
+# 实时任务处理系统API (Real-time Task Processing System)
 # ===================================================
 
 # ----------------------
-# 用户相关接口 (User API - Legacy)
+# 任务管理接口 (Task Management API)
 # ----------------------
-GET     /api/users                  controllers.UserController.list(page: Int ?= 1, size: Int ?= 10)
-GET     /api/users/:id              controllers.UserController.getById(id: Long)
-GET     /api/users/search           controllers.UserController.searchByName(name: String)
-POST    /api/users                  controllers.UserController.create(request: Request)
-PUT     /api/users/:id              controllers.UserController.update(request: Request, id: Long)
-DELETE  /api/users/:id              controllers.UserController.delete(id: Long)
+# 提交新任务
+POST    /api/tasks                  controllers.TaskSystemController.submitTask(request: Request)
+
+# 批量提交任务
+POST    /api/tasks/batch            controllers.TaskSystemController.submitBatchTasks(request: Request)
+
+# 获取系统统计信息 (must come before :taskId)
+GET     /api/tasks/stats            controllers.TaskSystemController.getStats()
+
+# 获取任务类型列表 (must come before :taskId)
+GET     /api/tasks/types            controllers.TaskSystemController.getTaskTypes()
+
+# 获取优先级列表 (must come before :taskId)
+GET     /api/tasks/priorities       controllers.TaskSystemController.getPriorities()
+
+# 查询任务状态 (generic route - must come last)
+GET     /api/tasks/:taskId          controllers.TaskSystemController.getTaskStatus(taskId: String)
+
+# ===================================================
+# WebSocket实时通信API (WebSocket Real-time Communication)
+# ===================================================
 
 # ----------------------
-# 产品相关接口 (Product API)
+# WebSocket连接端点 (WebSocket Endpoints)
 # ----------------------
-GET     /api/products               controllers.ProductController.list()
-GET     /api/products/:id           controllers.ProductController.getById(id: Long)
-GET     /api/products/category/:category    controllers.ProductController.getByCategory(category: String)
-POST    /api/products               controllers.ProductController.create(request: Request)
-POST    /api/products/batch         controllers.ProductController.batchCreate(request: Request)
-PUT     /api/products/:id           controllers.ProductController.update(request: Request, id: Long)
-DELETE  /api/products/:id           controllers.ProductController.delete(id: Long)
+# WebSocket连接（自动生成客户端ID）
+GET     /ws                         controllers.WebSocketController.socket()
 
-# ----------------------
-# 订单相关接口 (Order API)
-# ----------------------
-GET     /api/orders                 controllers.OrderController.list(status: java.util.Optional[String])
-GET     /api/orders/:id             controllers.OrderController.getById(id: Long)
-POST    /api/orders                 controllers.OrderController.create(request: Request)
-PATCH   /api/orders/:id/status      controllers.OrderController.updateStatus(request: Request, id: Long)
+# WebSocket连接（指定客户端ID）
+GET     /ws/:clientId               controllers.WebSocketController.socketWithId(clientId: String)
 
 # ----------------------
 # 静态资源
