@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /**
  * 用户实体类
@@ -48,13 +47,9 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private Boolean locked = false;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new HashSet<>();
+    // 一对多关系：一个用户可以有多个订单
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders;
 
     // Constructors
     public User() {}
@@ -130,11 +125,11 @@ public class User extends BaseEntity {
         this.locked = locked;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
