@@ -1,10 +1,42 @@
+# Maven
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
 
-### STS ###
+# SBT
+**/target/
+**/project/target/
+**/project/project/
+lib_managed/
+src_managed/
+test-output/
+.cache
+.history
+.lib/
+dist/*
+.scala_dependencies
+.worksheet
+
+### IDE ###
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Eclipse
 .apt_generated
 .classpath
 .factorypath
@@ -12,14 +44,17 @@ target/
 .settings
 .springBeans
 .sts4-cache
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.recommenders
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
@@ -29,15 +64,82 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
+# VS Code
 .vscode/
+.code-workspace
 
-### macOS ###
+### OS ###
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
 
-### Logs ###
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+### Application ###
+# Logs
+logs/
 *.log
+*.log.*
 
-### H2 Database ###
+# Database
 *.db
-play-demo/cs
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Play Framework specific
+play-framework-demo/logs/
+play-framework-demo/RUNNING_PID
+play-framework-demo/.sbtserver
+play-framework-demo/.idea_modules/
+
+# Large files / Binary
+*.exe
+*.dll
+*.so
+*.dylib
+cs
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Test outputs
+test-output.log
+*.test
